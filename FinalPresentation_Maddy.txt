@@ -1,0 +1,295 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+
+\documentclass[xcolor=dvipsnames]{beamer} % dvipsnames gives more built-in colors
+
+\usetheme{Frankfurt}
+\useoutertheme{split} % Alternatively: miniframes, infolines, split
+\useinnertheme{circles}
+
+\definecolor{BlueViolet}
+
+\usecolortheme[named=BlueViolet]{structure}
+%\usecolortheme[named=Mahogany]{structure} % Sample dvipsnames color
+
+%
+\documentclass[
+  ignorenonframetext,
+]{beamer}
+\usepackage{pgfpages}
+\setbeamertemplate{caption}[numbered]
+\setbeamertemplate{caption label separator}{: }
+\setbeamercolor{caption name}{fg=normal text.fg}
+\beamertemplatenavigationsymbolsempty
+% Prevent slide breaks in the middle of a paragraph
+\widowpenalties 1 10000
+\raggedbottom
+\setbeamertemplate{part page}{
+  \centering
+  \begin{beamercolorbox}[sep=16pt,center]{part title}
+    \usebeamerfont{part title}\insertpart\par
+  \end{beamercolorbox}
+}
+\setbeamertemplate{section page}{
+  \centering
+  \begin{beamercolorbox}[sep=12pt,center]{part title}
+    \usebeamerfont{section title}\insertsection\par
+  \end{beamercolorbox}
+}
+\setbeamertemplate{subsection page}{
+  \centering
+  \begin{beamercolorbox}[sep=8pt,center]{part title}
+    \usebeamerfont{subsection title}\insertsubsection\par
+  \end{beamercolorbox}
+}
+\AtBeginPart{
+  \frame{\partpage}
+}
+\AtBeginSection{
+  \ifbibliography
+  \else
+    \frame{\sectionpage}
+  \fi
+}
+\AtBeginSubsection{
+  \frame{\subsectionpage}
+}
+\usepackage{lmodern}
+\usepackage{longtable}
+\usepackage{amssymb,amsmath}
+\usepackage{ifxetex,ifluatex}
+\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math}
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\hypersetup{
+  pdftitle={Final Presentation},
+  pdfauthor={Ethan Maddy},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+\urlstyle{same} % disable monospaced font for URLs
+\newif\ifbibliography
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+
+\title{Impact of Health Care Spending on Health Outcomes}
+\author{Ethan Maddy}
+\date{5/6/2021}
+
+\begin{document}
+\frame{\titlepage}
+
+\begin{frame}{Introduction}
+\protect\hypertarget{introduction}{}
+
+\begin{itemize}
+\tightlist
+\item
+  Countries around the world have limited spending budgets and should invest in ways that will yield net positive returns for their populations
+\item
+  Empirical evidence has been inconclusive regarding the strength of the connection between health care spending and respective health outcomes
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}{Data}
+\protect\hypertarget{data}{}
+
+\textbf{\textit{World Bank - Health Nutrition and Population Statistics}}
+
+\begin{itemize}
+\tightlist
+\item
+  5185 observations with 436 variables
+\item
+  259 unique countries
+\item
+  2001 - 2020
+\item
+  Health Spending/Gross National Income (GNI) and its effect on death rate, crude (per 1,000 people), incidence of HIV, life expectancy at birth, total (years), malnutrition prevalence, weight for age (\% of children under 5), mortality from cardiovascular disease, cancer, diabetes or chronic respiratory disease, number of infant deaths, number of maternal deaths, number of people who are undernourished, and people using at least basic sanitation services (\% of population)
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}{Data}
+    \includegraphics[width = \linewidth]{WHO.healthspending.PNG}
+\end{frame}
+
+\begin{frame}{Definitions}
+\protect\hypertarget{Definitions}{}
+
+\begin{itemize}
+\tightlist
+\item
+  \underline{GNI}: Gross National Income -  total income received by the country from its residents and businesses regardless of whether they are located in the country or abroad.
+\item
+  \underline{GDP}: Gross Domestic Product - total market value of all finished goods and services produced within a country in a set time period.
+\item
+ \underline{$ R^2 $ within}: Amount of variance \emph{within separate panel units} that the model accounts for
+\item
+ \underline{$ R^2 $ between}: Amount of variance \emph{between separate panel units} that the model accounts for
+\item
+ \underline{$ R^2 $ overall}: weighted average of $ R^2 $ within and $ R^2 $ between
+\end{itemize}
+
+\end{frame}
+
+
+\begin{frame}{Methods}
+\protect\hypertarget{methods}{}
+
+Nine simple linear regression models using fixed effects to determine the impact, if any, health spending as a percent of GNI has on health outcomes.
+
+\ Y_i = \beta_0 + \beta_1 * X_1 + u \
+
+\ X_1 = log.HealthSpending/log.GNI \ \\
+\ Y_1 = log.DeathRate \ \ Y_2 = log.HIV \ \\
+\ Y_3 = log.LifeExpectancy \ \ Y_4 = log.Malnutrition \ \\
+\ Y_5 = Mortality \ \ Y_6 = log.InfantDeaths \ \\
+\ Y_7 = log.MaternalDeaths \ \ Y_8 = log.Undernourished \ \\
+\ Y_9 = Sanitation \ 
+
+
+
+\end{frame}
+
+\begin{frame}{Summary Statistics}
+\begin{table}
+\centering
+\begin{tabular}[t]{lrrrrrrr}
+\toprule
+  & Unique (\#) & Missing (\%) & Mean & SD \\
+\midrule
+log.GNI & 2540 & 15 & 8.4 & 1.5 \\
+log.HealthSpending & 4049 & 21 & 5.5 & 1.7 \\
+log.DeathRate & 3154 & 15 & 2.0 & 0.4 \\
+log.HIV & 680 & 51 & -1.3 & 1.7 \\
+log.LifeExpect & 4097 & 16 & 4.2 & 0.1 \\
+log.Malnutrition & 293 & 87 & 2.2 & 1.1 \\
+Mortality & 380 & 83 & 20.0 & 5.5 \\
+log.InfantDeaths & 3417 & 14 &  &  \\
+log.MaternalDeaths & 471 & 26 &  &  \\
+log.Undernourished & 606 & 49 & 14.8 & 2.4 \\
+Sanitation & 3928 & 18 & 72.4 & 29.0 \\
+\bottomrule
+\end{tabular}
+\end{table}
+\end{frame}
+
+
+\begin{frame}{Findings}
+  \begin{table}
+\centering
+\begin{tabular}[t]{lccccccccc}
+\toprule
+  & log.DeathRate & log.HIV & log.LifeExpectancy \\
+\midrule
+HealthSpend/GNI & -0.322 & 0.025 & 0.141 \\
+ & (0.237) & (0.896) & (0.063) \\
+\midrule
+Num.Obs. & 3900 & 2303 & 3878 \\
+R2 & 0.945 & 0.961 & 0.970 \\
+R2 Adj. & 0.941 & 0.959 & 0.968 \\
+R2 Within & 0.231 & 0.160 & 0.590 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\end{frame}
+
+\begin{frame}{Findings}
+  \begin{table}
+\centering
+\begin{tabular}[t]{lccccccccc}
+\toprule
+  & log.Malnutrition & Mortality & log.InfantDeaths \\
+\midrule
+HealthSpend/GNI & -0.703 & 1.535 & -0.740 \\
+ & (0.463) & (2.829) & (0.237) \\
+\midrule
+Num.Obs. & 638 & 864 & 3971 \\
+R2 & 0.980 & 0.975 & 0.999 \\
+R2 Adj. & 0.974 & 0.966 & 0.999 \\
+R2 Within & 0.450 & 0.615 & 0.599 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\end{frame}
+
+\begin{frame}{Findings}
+  \begin{table}
+\centering
+\begin{tabular}[t]{lccccccccc}
+\toprule
+  & log.Maternal & log.Undernourished & Sanitation \\
+\midrule
+HealthSpend/GNI & -0.610 & -1.387 & 31.523 \\
+  & (0.312) & (0.573) & (9.176) \\
+\midrule
+Num.Obs.& 3605 & 2548 & 3725 \\
+R2 & 0.998 & 0.990 & 0.987 \\
+R2 Adj. & 0.998 & 0.989 & 0.986 \\
+R2 Within & 0.456 & 0.109 & 0.434 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\end{frame}
+
+\begin{frame}{Findings}
+\protect\hypertarget{findings}{}
+
+\begin{itemize}
+\tightlist
+\item
+  Health Spending as a percent of GNI has a significant effect on all variables \textbf{except} mortality from cardiovascular disease, cancer, diabetes or chronic respiratory disease and the incidence of HIV
+\item
+  Health spending has a significant, beneficial impact on all other variables, most significantly on the percent of the population using at least basic sanitation and number of people who are undernourished
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}{Conclusion}
+\protect\hypertarget{conclusion}{}
+
+\begin{itemize}
+\tightlist
+\item
+  Health spending has a significant effect on almost all desirable health outcomes
+\item
+  Health spending is limited by size of country and respective GNI. These models show that health spending is worthwhile to improving health outcomes regardless of country size and GNI
+\item
+  Continued study: non-naive models, imputation, multiple linear regression 
+\end{itemize}
+
+\end{frame}
+
+\end{document
