@@ -18,7 +18,7 @@ In order to replicate this project, first download the data:
 
 1. Visit the World Bank's [Health Nutrition and Population Statistics DataBank page](https://databank.worldbank.org/source/health-nutrition-and-population-statistics)
 2. Select all countries under the 'Country' tab
-3. Select which variables to be tested - I downloaded all 428 variables
-4. Select the years to be included in the model - I used the past 20 years, 2020 - 2021
-5. Download the selected data using the dropdown box in the upper right corner - I downloaded the data as a CSV to read it
+3. Select variables to be tested -  I downloaded all 428 variables
+4. Select the years to be included in the model - I used the past 20 years (2020 - 2021)
+5. Download the selected data using the dropdown box in the upper right corner - I downloaded the data as a CSV
 6. The code used in this project can be found [here](https://github.com/emaddyy/FinalProject_5253/blob/main/FinalProjectCode_Maddy.R)
