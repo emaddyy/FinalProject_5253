@@ -4,7 +4,7 @@
 |--------------|--------------------------------------------------------------|
 | Email | [ethanmaddy@ou.edu](mailto:ethanmaddy@ou.edu) |
 | Phone | 405-777-6251 |
-| Affliation | University of Oklahoma |
+| Affiliation | University of Oklahoma |
 | GitHub | [emaddyy](https://github.com/emaddyy) |
 
 
