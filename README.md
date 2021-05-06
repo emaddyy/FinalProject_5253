@@ -17,7 +17,7 @@ Empirical evidence has been inconclusive about the strength of the connection be
 In order to replicate this project, first download the data:
 
 1. Visit the World Bank's [Health Nutrition and Population Statistics DataBank page](https://databank.worldbank.org/source/health-nutrition-and-population-statistics)
-2. Select all countries under the 'Country'tab
+2. Select all countries under the 'Country' tab
 3. Select which variables to be tested - I downloaded all 428 variables
 4. Select the years to be included in the model - I used the past 20 years, 2020 - 2021
 5. Download the selected data using the dropdown box in the upper right corner - I downloaded the data as a CSV to read it
