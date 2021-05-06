@@ -1,6 +1,6 @@
 # Final Project (ECON 5253) - Ethan Maddy #
 
-|  | [Ethan Maddy](http://emaddyy.github.io) |
+|  | Ethan Maddy |
 |--------------|--------------------------------------------------------------|
 | Email | [ethanmaddy@ou.edu](mailto:ethanmaddy@ou.edu) |
 | Phone | 405-777-6251 |
