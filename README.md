@@ -14,7 +14,7 @@ Empirical evidence has been inconclusive about the strength of the connection be
 
 ## Replication of Findings ##
 
-In order to replicate this project, follow the these steps:
+In order to replicate this project, follow these steps:
 
 1. Visit the World Bank's [Health Nutrition and Population Statistics DataBank page](https://databank.worldbank.org/source/health-nutrition-and-population-statistics)
 2. Select all countries under the 'Country' tab
