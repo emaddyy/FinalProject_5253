@@ -1,0 +1,388 @@
+\documentclass[12pt,english]{article}
+\usepackage{mathptmx}
+
+\usepackage{color}
+\usepackage[dvipsnames]{xcolor}
+\definecolor{darkblue}{RGB}{0.,0.,139.}
+
+\usepackage[top=1in, bottom=1in, left=1in, right=1in]{geometry}
+\usepackage[compact]{titlesec}
+\usepackage{ragged2e}
+\usepackage{amsmath}
+\usepackage{amstext}
+\usepackage{amssymb}
+\usepackage{setspace}
+\usepackage{lipsum}
+
+\usepackage[authoryear]{natbib}
+\usepackage{url}
+\usepackage{booktabs}
+\usepackage[flushleft]{threeparttable}
+\usepackage{graphicx}
+\usepackage[english]{babel}
+\usepackage{pdflscape}
+\usepackage[unicode=true,pdfusetitle,
+ bookmarks=true,bookmarksnumbered=false,bookmarksopen=false,
+ breaklinks=true,pdfborder={0 0 0},backref=false,
+ colorlinks,citecolor=black,filecolor=black,
+ linkcolor=black,urlcolor=black]
+ {hyperref}
+\usepackage[all]{hypcap} % Links point to top of image, builds on hyperref
+\usepackage{breakurl}    % Allows urls to wrap, including hyperref
+
+\linespread{2}
+
+\begin{document}
+
+\begin{singlespace}
+\title{{Impact of Health Care Spending on Health Outcomes}\thanks{Special thanks to Dr. Tyler Ransom for his feedback and guidance throughout this process.}}
+\end{singlespace}
+
+\author{Ethan Maddy\thanks{Department of Economics, University of Oklahoma.
+E-mail~address:~\href{mailto:ethanmaddy@ou.edu}{ethanmaddy@ou.edu}}}
+
+% \date{\today}
+\date{May 10, 2020}
+
+\maketitle
+\begin{abstract}
+\begin{singlespace}
+    A fixed-effect model to determine the impact, if any, health spending as a percent of Gross National Income (GNI) has on health outcomes. Data sourced for this research is from the World Bank’s Health Nutrition and Population Statistics DataBank. The data used in this research includes information from 259 unique countries from 2001-2020. 
+\end{singlespace}
+
+\end{abstract}
+\vfill{}
+
+
+\pagebreak{}
+
+
+\section{Introduction}\label{sec:introduction}
+    Empirical evidence has been inconclusive about the strength of the connection between health care spending and health outcomes. This paper uses the Health Nutrition and Population Statistics data from the World Bank to model the correlation between health expenditure percent of Gross National Income (GNI) and death rate, incidence of HIV, life expectancy at birth, malnutrition prevalence, mortality from cardiovascular disease, cancer, diabetes, or chronic respiratory disease, number of infant deaths, number of maternal deaths, number of people who are undernourished, and percent of the population that use at least basic sanitation services.
+    
+    Around the world, countries and their respective governments decide how to allocate their wealth through government spending and reallocation. Most developed countries spend between 3-10\% of their budget on health related expenditures. However, some countries spend less while others spend much more. For example, the United States spends 17\% of GDP on health, yet does not see returns on its investment like some developed countries do.
+    
+    In this paper, linear regression analysis is applied to determine the relationship between health spending per capita and various health outcomes. This research paper consists of brief literature review regarding health spending, description of the data used, relevant variables, and underlying assumptions. Later, statistical regression models are used to determine results, followed by a discussion of said results and a brief conclusion. All references, figures and tables can be found on pages \pageat{13} to \pageat{16}. 
+
+\vfill
+\pagebreak{}
+\clearpage
+    
+\section{Literature Review}\label{sec:litreview}
+
+    While it may seem intuitive for health spending to be significantly correlated with health outcomes, \citet{Martin_Rice_Smith_2008} find that "Empirical evidence has hitherto been inconclusive about the strength of the link between health care spending and health outcomes." In countries like the United States, increased health spending is not always associated with better health outcomes. Due to a highly complex and fragmented payment system that weakens the demand side of the health sector and entails high administrative costs, the United States spends more per capita of health than any other country in the world, adjusted as a percentage of GDP- \citet{Reinhardt_2004}.
+
+    Recent literature has been more conclusive regarding the link between health spending and health outcomes. For example, \citet{Farag_2013} finds that health spending has a significant effect on reducing infant and under-5 child mortality with an elasticity of 0.13 to 0.33 for infant mortality and 0.15 to 0.38 for under-5 child mortality in models estimated using fixed effects methods. \citet{Hu_Mendoza_2013} strive to improve upon previous empirical studies by conducting a more careful analysis of the determinants controlling for possible endogeneity. \citet{Hu_Mendoza_2013} also find that both public spending on healthcare and the quality of governance matter for the reduction of child mortality rates. They go on to say that their mixed results on the interaction of governance with public spending cast some doubt on the conclusiveness of previous empirical studies.
+    
+    Through this paper, I hope to provide a small addition to the field of health by briefly qualifying the conclusion that health spending is a worthwhile investment and is an important measure to yield positive health outcomes around the world.
+
+\vfill
+\pagebreak{}
+\clearpage
+
+
+
+\section{Data}\label{sec:data}
+    The data source for this research is the World Bank’s Health Nutrition and Population Statistics DataBank. DataBank is an analysis and visualisation tool that contains collections of time series data on a variety of topics. The Health Nutrition and Population Statistics data is classified as Public under the Access to Information Classification Policy. The data used includes information from 259 unique countries from 2001-2020. 5,185 observations were taken from these 259 countries and were included in a fixed-effect \footnote{Fixed-effects models are a class of statistical models in which the levels of independent variables are assumed to be fixed and only the dependent variable changes in response to the levels of independent variables. In this paper, 'Country Name' is fixed in the regression models.} analysis. \\
+    
+    All variables  are defined in Table \ref{tab:Table 1} and summary statistics are provided in Table \ref{tab:Table 2}. The independent variable used in this paper is Health Spending per capita divided by Gross National Income (GNI). This variable was created to show the percentage of GNI that a country spends on health. With this variable, smaller countries are compared equally to larger countries by using a percentage of spending rather than an absolute value.  \\
+
+Gross National Income and Gross Domestic Product are similar but have distinct differences. 
+    
+    \begin{itemize}
+        \item
+            \underline{GNI}: Gross National Income -  total income received by the country from its residents and businesses regardless of whether they are located in the country or abroad.
+        \item
+            \underline{GDP}: Gross Domestic Product - total market value of all finished goods and services produced within a country in a set time period.
+    \end{itemize}
+    
+\vfill
+\pagebreak{}
+\clearpage
+    
+Before running the analysis, multiple variables were mutated and changed to factor or numeric variables. Log was used when the variable was reported as an absolute and could not be accurately interpreted. 
+    \begin{itemize}
+            \item \emph{HealthSpending} = `Current health expenditure per capita (current US\$)'
+            \item \emph{GNI} = `GNI per capita, Atlas method (current US\$)'
+            \item \emph{log.DeathRate} = log of `Death rate, crude (per 1,000 people)'
+            \item \emph{log.HIV} = log of `Incidence of HIV, all (per 1,000 uninfected population)'
+            \item \emph{log.LifeExpect} = log of `Life expectancy at birth, total (years)'
+            \item \emph{log.Malnutrition} = log of `Malnutrition prevalence, weight for age (\% of children under 5)'
+            \item \emph{Mortality} = `Mortality from CVD, cancer, diabetes or CRD between exact ages 30 and 70 (\%)'
+            \item \emph{log.InfantDeaths} = log of `Number of infant deaths'
+            \item \emph{log.MaternalDeaths} = log of`Number of maternal deaths'
+            \item \emph{log. Undernourished} = log of `Number of people who are undernourished'
+            \item \emph{Sanitation} = `People using at least basic sanitation services (\% of population)'
+        \end{itemize}
+    
+\vfill
+\pagebreak{}
+\clearpage 
+
+Gauss-Markov Assumptions:
+\begin{itemize}
+    \begin{enumerate}
+        \item Linear in parameters – The model consists of a simple  linear regression that is linear in parameters and follows the equation below:
+            \begin{equation}
+                Y = \beta_0 + \beta_1 + \beta_1 + ... + u
+            \end{equation}
+        \item Random sample: The data includes approximately 5,185 observations 289 countries. Considering this, the sampling can be assumed as random.
+        \item No perfect collinearity: There is no perfect collinearity between the variables in the model since there is only one X variable. 
+        \item Exogeneity $ E (u|x) = 0 $: It is difficult to assume this assumption for this paper. Considering only one independent variable is used, there is almost certainly Omitted Variable Bias (OVB).
+        \item Homoskedasticity: The model and variables constructed from the data are assumed to have constant variance of u's.
+    \end{enumerate}
+\end{itemize}
+
+\vfill
+\pagebreak{}
+
+\section{Empirical Methods}\label{sec:methods}
+    Unlike most econometric models, this research will explore how one independent variable, health care spending as a percent of GNI, affects many dependent variables, health outcomes. The empirical model used is depicted by the equation below:
+
+\begin{equation}
+    Y_{i} = \beta_{0} + \beta_{1} \times X_{1} + u
+\end{equation}
+    Where $Y_{i}$ is a dependent health outcome variable and $X_{1}$ is health spending as a percent of Gross National Income. The parameters of interest are $Y_{i}$ and are listed below. Nine different naive models are run with the equation above.
+
+\begin{center}
+$X_{1}$ = Health Spending percent of GNI\\
+$Y_{1}$ = log of Death Rate\\
+$Y_{2}$ = log of HIV\\
+$Y_{3}$ = log of Life Expectancy\\
+$Y_{4}$ = log of Malnutrition\\
+$Y_{5}$ = Mortality\\
+$Y_{6}$ = log of Infant Deaths\\
+$Y_{7}$ = log of Maternal Deaths\\
+$Y_{8}$ = log of Undernourished\\
+$Y_{9}$ = Sanitation\\
+\end{center}
+
+\vfill
+\pagebreak{}
+
+\section{Research Findings}\label{sec:results}
+    The main results are reported in Table \ref{tab:Table 3}. Nine regression models are presented and include coefficients, number of observations, R2, R2 adjusted, and R2 within. When interpreting the table, focus should be given to R2 within\footnote{R2 within - The amount of variance \emph{within} the panel units that the model accounts for}. Since this model is looking at how the dependent variable changes for each of the panel units, R2 within is the most appropriate to look at for interpretation. 
+    
+    Model 1, Death Rate, in Table \ref{tab:Table 3} shows the relationship between independent variable "health spending" and dependent variable log of "Death Rate". According to \ref{tab:Table 3} and using log-level interpretation, we see that if health spending increases by 1\%, death rate will increase by 0.013\%. With a standard error of 0.006, health spending has a significant, positive impact on death rate. The R2 within is measured as 0.244, showing that health spending accounts for 24.4\% of the variance within the relevant panel units. This conclusion is counter-intuitive, and is certainly not desirable. At the end of this section, discussion about omitted variable bias and what health spending as a percentage of GNI truly measures.  
+     
+    Model 2, HIV, in Table \ref{tab:Table 3} shows the relationship between independent variable "health spending" and dependent variable log of "HIV". According to \ref{tab:Table 3}, there is no significant relationship between health spending and incidence of HIV due to the large standard error (0.014) that includes 0 in its interval.
+
+    Model 3, Life Expectancy, in Table \ref{tab:Table 3} shows the relationship between independent variable "health spending" and dependent variable log of "Life Expectancy". According to \ref{tab:Table 3} and using log-level interpretation, we see that if health spending increases by 1\%, life expectancy at birth will decrease by 0.002\%. With a standard error of 0.001, health spending has a small but significant, negative impact on life expectancy. The R2 within is measured as 0.587, showing that health spending accounts for 58.7\% of the variance within the relevant panel units. This conclusion is again counter-intuitive and undesirable. 
+
+    Model 4, Malnutrition, in Table \ref{tab:Table 3} shows the relationship between independent variable "health spending" and dependent variable log of "Malnutrition". According to \ref{tab:Table 3}, there is no significant relationship between health spending and malnutrition due to the large standard error (0.012) and 0.000 coefficient.
+    
+    Model 5, Mortality, in Table \ref{tab:Table 3} shows the relationship between independent variable "health spending" and dependent variable "Mortality". According to \ref{tab:Table 3}, there is no significant relationship between health spending and mortality due to the large standard error (0.057) and that includes 0 in its interval.
+    
+    Model 6, Infant Deaths, in Table \ref{tab:Table 3} shows the relationship between independent variable "health spending" and dependent variable log of "Infant Deaths". According to \ref{tab:Table 3} and using log-level interpretation, we see that if health spending increases by 1\%, number of infant deaths will decrease by 0.007\%. With a standard error of 0.004, health spending has a small but significant, negative impact on infant deaths. The R2 within is measured as 0.592, showing that health spending accounts for 59.2\% of the variance within the relevant panel units. This conclusion is the first positive outcome showing the benefit of health spending worldwide. 
+    
+    Model 7, Maternal Deaths, in Table \ref{tab:Table 3} shows the relationship between independent variable "health spending" and dependent variable log of "Maternal Deaths". According to \ref{tab:Table 3} and using log-level interpretation, we see that if health spending increases by 1\%, number of maternal deaths will increase by 0.007\%. With a standard error of 0.006, health spending has a small but significant, positive impact on maternal deaths. The R2 within is measured as 0.452, showing that health spending accounts for 45.2\% of the variance within the relevant panel units. This conclusion is the another negative outcome and will be discussed at the end of this section. 
+    
+    Model 8, Undernourished, in Table \ref{tab:Table 3} shows the relationship between independent variable "health spending" and dependent variable log of "Undernourished". According to \ref{tab:Table 3} and using log-level interpretation, we see that if health spending increases by 1\%, the number of people who are undernourished will decrease by 0.010\%. With a standard error of 0.009, health spending has a small but significant, negative impact on undernourished. The R2 within is measured as 0.095, showing that health spending accounts for 9.5\% of the variance within the relevant panel units, considerably smaller than the other models. This conclusion is the second positive outcome showing the benefit of health spending worldwide. 
+    
+     Model 9, Sanitation, in Table \ref{tab:Table 3} shows the relationship between independent variable "health spending" and dependent variable "Sanitation". According to \ref{tab:Table 3}, there is no significant relationship between health spending and sanitation due to the large standard error (0.129) and that includes 0 in its interval.
+     
+\bigskip
+
+
+    In this analysis, all Gauss-Markov Assumptions were assumed to give the best linear unbiased estimate (BLUE). However, the fourth assumption, Exogeneity $ E (u|x) = 0 $, is almost certainly not confirmed. There are several different reasons why this model may not be yielding optimal results, two of which are discussed below. 
+
+\bigskip
+
+\begin{itemize}
+    \begin{enumerate}
+    
+        \item Omitted Variable Bias (OVB)\footnote{Omitted variable bias is the bias in the OLS estimator that arises when the regressor, X, is correlated with an omitted variable}: In this paper, one independent X variable, health spending as a percent of GNI, was used to find relationships between a variety of health outcomes, as seen in Table \ref{tab:Table 3}. There are two ways in which OVB may play a part in influencing the model. 
+            \begin{enumerate}
+                \item X is correlated with the omitted variable
+                \item  The omitted variable is a determinant of the dependent variable Y
+            \end{enumerate}
+        Both of these are almost certainly at play in this paper. First, health spending is correlated directly with how much wealth a country has. This problem was assumed to be fixed when health spending was divided by GNI, thus eliminating the absolute aspect of the variable. However, Gross National Income is not a panacea. When controlling for a country's wealth, it fails to take into account the type of governance in the country, how much health aid is given, and a variety of other aspects of government spending. Second, omitted variables are likely also determinants of health outcomes. For example, Yemen (a country included in this analysis), has had many different types of governments in the past decades. These different types of governance have likely had an adverse impact on the health of Yemen's population. While it may not be as apparent in other countries, there are countless variables that impact the health of a population, suggesting that health spending alone is the sole determinant is naive.
+        
+        \item What health care spending per capita actually mean? In short, it means how much is spent, per person, on health care. In different areas of the world, these are very different things. For example, in the United States, per capita spending for the elderly remained about five times higher than spending for children (\citet{Lassman_2014}). In developing countries, health spending is extremely limited and unfocused, fighting random fires rather than working at prevention. Additionally, many developing countries do not keep track of their health budgets accurately, so the data provided by the World Bank may be flawed (\citet{Raciborska_2008}). Overall, health care spending itself is not a silver bullet due to its intrinsic volatile nature. 
+        
+    \end{enumerate}
+\end{itemize}
+
+\section{Conclusion}\label{sec:conclusion}
+    The main goal of this paper was to contribute statistical analysis to the health economics literature. After running nine separate fixed-effect models, five were shown to have a significant relationship with health spending as a percent of Gross National Income. Several of these significant outcomes were undesirable (e.g. death rate having a positive relationship with health spending). \\
+    
+    After considering these false outcomes and the variety of problems with naive modeling, the results can be interpreted as inconclusive. Future analysis will center around defining health spending, diminishing its correlates, and increasing the amount of variables to decrease omitted variable bias. 
+
+\vfill
+\pagebreak{}
+\begin{spacing}{1.0}
+\bibliographystyle{jpe}
+\bibliography{References_Maddy.bib}
+\addcontentsline{toc}{section}{References}
+\end{spacing}
+
+\vfill
+\pagebreak{}
+\clearpage
+
+%========================================
+% FIGURES AND TABLES 
+%========================================
+\section*{Figures and Tables}\label{sec:figTables}
+\addcontentsline{toc}{section}{Figures and Tables}
+%----------------------------------------
+% Figure 1
+%----------------------------------------
+\begin{figure}[htp]
+    \centering
+    \includegraphics[width=16cm]{WHO.healthspending.PNG}
+    \caption{Health care spending per capita, 2017 (US\$)}\citet{WHO.healthspending}
+    \label{fig:Health Spending - World Health Organization}
+\end{figure}
+
+\vfill
+\pagebreak{}
+\clearpage
+%----------------------------------------
+% Table 1
+%----------------------------------------
+
+\begin{table}
+\caption{Variable Definitions}
+    \label{tab:Table 1}
+\begin{center}
+ \begin{tabular}{|c|c|} 
+\hline
+Variable & Description  \\ [0.5ex] 
+\hline
+HealthSpending & Current health expenditure per capita (current US\$) \\
+\hline
+GNI & GNI per capita, Atlas method (current US\$) \\ 
+\hline
+DeathRate & Death rate, crude (per 1,000 people) \\
+\hline
+HIV & Incidence of HIV, all (per 1,000 uninfected population) \\
+\hline
+LifeExpect & Life expectancy at birth, total (years) \\
+\hline
+Malnutrition & Malnutrition prevalence, weight for age (\% of children under 5)\\
+\hline
+Mortality & Mortality from CVD, cancer, diabetes or CRD between exact ages 30 and 70 (\%) \\
+\hline
+InfantDeaths & Number of infant deaths \\
+\hline
+MaternalDeaths & Number of maternal deaths \\
+\hline
+Undernourished & Number of people who are undernourished \\
+\hline
+Sanitation & People using at least basic sanitation services (\% of population) \\
+\hline
+\end{tabular}
+\end{center}
+\end{table}
+
+%----------------------------------------
+% Table 2
+%----------------------------------------
+\begin{table}
+\caption{Summary Statistics}
+    \label{tab:Table 2}
+\centering
+\begin{tabular}[t]{lrrrrrrr}
+\toprule
+  & Unique (\#) & Missing (\%) & Mean & SD & Min & Median & Max\\
+\midrule
+GNI & 2551 & 15 & 12048.6 & 17523.0 & 110.0 & 4403.1 & 121890.0\\
+HealthSpending & 4065 & 21 & 892.9 & 1566.2 & 4.5 & 252.2 & 10623.8\\
+log.DeathRate & 3154 & 15 & 2.0 & 0.4 & 0.1 & 2.0 & 3.1\\
+log.HIV & 680 & 51 & -1.3 & 1.7 & -4.6 & -1.6 & 3.0\\
+log.LifeExpect & 4097 & 16 & 4.2 & 0.1 & 3.7 & 4.3 & 4.4\\
+log.Malnutrition & 293 & 87 & 2.2 & 1.1 & -1.6 & 2.5 & 3.9\\
+Mortality & 380 & 83 & 20.0 & 5.5 & 7.8 & 20.2 & 39.0\\
+log.InfantDeaths & 3417 & 14 &  &  &  & 8.3 & 15.7\\
+log.MaternalDeaths & 471 & 26 &  &  &  & 5.2 & 13.0\\
+log.Undernourished & 606 & 49 & 14.8 & 2.4 & 11.5 & 14.5 & 20.6\\
+Sanitation & 3928 & 18 & 72.4 & 29.0 & 3.6 & 84.9 & 100.0\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\vfill
+\pagebreak{}
+\clearpage
+
+%----------------------------------------
+% Table 3
+%----------------------------------------
+
+\begin{table}
+\centering
+\titlespacing{\section}{0pt}{0pt}{0pt}
+\AtBeginDocument{
+  \setlength\abovedisplayskip{0pt}
+  \setlength\belowdisplayskip{0pt}}
+\small
+\caption{Health Spending on Y_{i}}
+\label{tab:Table 3} 
+\begin{tabular}[t]{lccc}
+\toprule
+  & Death Rate & HIV & Life Expectancy\\
+\midrule
+HealthSpendPCNT & 0.013 & 0.009 & -0.002 \\
+ & (0.006) & (0.014) & (0.001) \\
+\midrule
+Num.Obs. & 3900 & 2303 & 3878 \\
+R2 & 0.946 & 0.961 & 0.970 \\
+R2 Adj. & 0.942 & 0.959 & 0.968\\
+R2 Within & 0.244 & 0.161 & 0.587 \\
+FE: `Country Name` & X & X & X \\
+Std. errors & Clustered (`Country Name`) & Clustered (`Country Name`) & Clustered (`Country Name`) \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}
+\centering
+\titlespacing{\section}{0pt}{0pt}{0pt}
+\AtBeginDocument{
+  \setlength\abovedisplayskip{0pt}
+  \setlength\belowdisplayskip{0pt}}
+\small
+\begin{tabular}[t]{lccc}
+\toprule
+  & Malnutrition & Mortality & Infant Deaths\\
+\midrule
+HealthSpendPCNT & 0.000 & 0.026 & -0.007 \\
+ & (0.012) & (0.057) & (0.004) \\
+\midrule
+Num.Obs. & 638 & 864 & 3971 \\
+R2 & 0.980 & 0.975 & 0.999 \\
+R2 Adj. & 0.973 & 0.966 & 0.999 \\
+R2 Within & 0.445 & 0.615 & 0.592 \\
+FE: `Country Name` & X & X & X \\
+Std. errors & Clustered (`Country Name`) & Clustered (`Country Name`) & Clustered (`Country Name`) \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}
+\centering
+\titlespacing{\section}{0pt}{0pt}{0pt}
+\AtBeginDocument{
+  \setlength\abovedisplayskip{0pt}
+  \setlength\belowdisplayskip{0pt}}
+\small
+\begin{tabular}[t]{lccc}
+\toprule
+  & Maternal Deaths & Undernourished & Sanitation\\
+\midrule
+HealthSpendPCNT  & 0.007 & -0.010 & 0.020\\
+& (0.006) & (0.009) & (0.129)\\
+\midrule
+Num.Obs. & 3605 & 2548 & 3725\\
+R2 & 0.998 & 0.990 & 0.986\\
+R2 Adj. & 0.998 & 0.989 & 0.985\\
+R2 Within  & 0.452 & 0.095 & 0.410\\
+FE: `Country Name` & X & X & X \\
+Std. errors & Clustered (`Country Name`) & Clustered (`Country Name`) & Clustered (`Country Name`) \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+
+\end{document}
