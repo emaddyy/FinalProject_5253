@@ -21,4 +21,4 @@ In order to replicate this project, follow these steps:
 3. Select variables to be tested: all 428 variables
 4. Select the years to be included in the model: 2020 - 2021
 5. Download the selected data using the dropdown box in the upper right corner: CSV format
-6. The code used in this project can be found [here](https://github.com/emaddyy/FinalProject_5253/blob/main/FinalProjectCode_Maddy.R)
+6. The code used in this project can be found [here](https://github.com/emaddyy/FinalProject_5253/blob/main/Paper/FinalProjectCode_Maddy.R)
